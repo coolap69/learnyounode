@@ -1,6 +1,17 @@
 var fs = require('fs');
+var path = require('path');
 
-fs.readFile(process.argv[2], 'utf8', function callback (error, contents) {
+var directory = process.argv[2];
+var extension = '.' + process.argv[3];
+
+fs.readdir(directory, function callback (error, files) {
   if (error) throw error;
-   console.log(contents.split('\n').length - 1);
+
+  var filtered = files.filter(function callback (file) {
+    return path.extname(file) === extension;
+  });
+
+  filtered.forEach(function callback (file) {
+    console.log(file);
+  });
 });
