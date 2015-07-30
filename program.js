@@ -1,8 +1,11 @@
+var fs = require('fs');
+
 var argv = process.argv;
-var total = 0;
+var filepath = argv[2];
 
-for (var i = 2, max = argv.length; i < max; i++ ) {
-  total += Number(argv[i]);
-}
+var buffer = fs.readFileSync(filepath);
+var str = buffer.toString();
 
-console.log(total);
+var ary = str.split('\n');
+
+console.log(ary.length - 1);
